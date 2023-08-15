@@ -20,15 +20,42 @@ https://doi.org/10.1103/PhysRevResearch.5.023093
 ### SurfaceWarper/
 Main simulation scripts prefixed with: Coordinate_Minimizer_*.py
 
+
 *Setup.py: sets up a new configuration from scratch, instead of reading one off an exisiting *.config files. 
+
 *New.py: reads from an initial, equilibrated configuration. It is the start of the run simulation. Get system snapshots with a higher frequency 
+
 *Cont.py: similarly to the above, it reads from an existing *config file, but has an offset number, from the last timestep stored. This is used to continue a simulation that has not reached the equilibrium configuration and has to be continued from a given checkpoint. 
+
+Main branch at the moment works with Helix configurations, with custom tags. Code is easily adaptable to reading other geometries but still needs to be updated to arbitrary input configuration geometries. 
+
+#### Current use:
+
+(Add  " 2>&1 | tee ${outDir} out.txt " after each command to save screen output. See e.g. bash scripts in Examples/bashScripts/)
+
+`python3 Coordinate_Minimizer_Setup.py`
+
+`python3 Coordinate_Minimizer_New.py ${helixType} ${k_bend} ${cS} ${H0} ${W0} `
+
+`python3 Coordinate_Minimizer_Cont.py ${helixType} ${k_bend} ${cS} ${H0} ${W0} ${contValue}`
+
+where:
+- helixType : letter taggins setup INIT configuration (see for ex, Examples/conf_A_INIT.config)
+- k_bend : bending modulus constant
+- cS : hooke energy constant
+- H0 : dimensionless spontaneous mean curvature
+- W0 : dimensionless spontaneous warp
+- contValue : saved config number from where to continue the run
+
 
 ### Analysis/
 The code running the simulations creates 3D plots using matplotlib to track the simulation progress. To visualize the results, this directory contains scripts to visualize the output configuration files with Mayavi, including heat maps of the local fields (mean curvature, deviatoric curvature, area, Gaussian curvature, hooke stress)
 
 ### Examples/
-Coming up: In/Output example files and visualization
+- bashScripts : simple scripts to define variables and run the program
+- resultConfs : examples of output config files
+
+Also includes two initial configurations used to generate runs with *New
 
 ### Old/ 
 Coming up: Older versions of this code. 
