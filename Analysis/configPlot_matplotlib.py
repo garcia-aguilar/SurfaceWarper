@@ -26,21 +26,21 @@ import numpy as np
 
 confs=[]
 
-helix='B'
+helix='C'
 dH0 = 1.0
-dW0 = 1.0
+dW0 = 0.0
 cS = 60.0
 cB = 1.0
 width = 1.06
 
-runValue = 309951
+runValue = ''
 tag = '_{}_cS{}_H{}_W{}'.format(helix, cS, dH0, dW0)
 longTag = '_{}_c1.0_cS{}_H{}_W{}'.format(helix, cS, dH0, dW0)
-resDir = './Helix{}/Run/Helix{}_from300951_ok/'.format(helix,tag)
+resDir = '../Examples/resultConfs/'
 
 ### Here, change to any configuration file naming, does not have to be helix
 
-configFile = resDir+'Confs/conf{}_{}.config'.format(longTag, runValue)
+configFile = resDir+'conf_{}.config'.format(tag)#'Confs/conf{}_{}.config'.format(longTag, runValue)
 
 
 
